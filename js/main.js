@@ -5,6 +5,7 @@ const $modal = $("#modal")[0];
 let info =[];
 let employeeFullName =[]
 let namesHTML;
+let index;
 
 // ====================================//
 // ====================================//
@@ -64,6 +65,9 @@ function modalContent (index){
   let state = abbrState(number.location.state, 'abbr');
 
   $modalHTML.innerHTML = `
+  <span class="next">&#10095;</span>
+  <span class="previous">&#10094;</span>
+
   <div class= "modal-contact-info">
   <img src=${number.picture.large} class="avatarModal">
     <h3 class="names">${number.name.first} ${number.name.last}</h3>
@@ -77,14 +81,58 @@ function modalContent (index){
   </div>
   `;
    $modal.style.display="block";
+
+   // Selects Next and Previous Arrows and triggers eventlisteners
+   // to change employee-container
+   const $next = $('.next');
+   const $previous = $('.previous');
+   $next.on('click', next)
+   $previous.on('click', previous)
+   window.addEventListener('keydown', checkKey)
+}
+
+// Changes employee modal of based on keyboard input
+function checkKey(e) {
+  e=e|| window.event;
+  if(e.keyCode === 37) {
+    previous();
+  }  else if (e.keyCode === 39) {
+  next();
+}
 }
 
 //Grabs index from container when clicked
 function getContainerIndex(e) {
   const btn = e.target.closest('.employee-container');
-  let index = btn.getAttribute("data-index")
+  index = btn.getAttribute("data-index")
   if(index) {
     modalContent(index)
+  }
+}
+
+// triggers function that changes the employee information in the modal
+// based on index
+function getIndex() {
+  modalContent(index)
+}
+
+ //reduces value of index, changing the employee card displayed in modal
+const previous= () => {
+  if(index === 0){
+    return false
+  } else {
+    index--;
+    getIndex()
+  }
+}
+
+//increases the value of index, changing the employee card displayed in modal
+const next= () => {
+  if(index === 11){
+    return false
+  }else {
+    index++;
+    getIndex()
   }
 }
 
@@ -175,16 +223,10 @@ function abbrState(input, to){
     }
 }
 
-function hover(hover) {
-  hover.style.background= "white"
-}
-
-
 // ====================================//
 // ====================================//
 // ============EventListeners==========//
 // ====================================/
-
 
 $employee.addEventListener('click', getContainerIndex)
 $closeBtn.addEventListener('click', closeModal)

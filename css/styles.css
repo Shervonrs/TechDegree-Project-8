@@ -1,4 +1,3 @@
-@charset "UTF-8";
 * {
   box-sizing: border-box;
   font-family: sans-serif;
@@ -21,21 +20,11 @@ h3 {
   font-weight: lighter;
 }
 
-#employee {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-@media (min-width: 768px) {
-  #employee {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1em;
-  }
-}
-@media (min-width: 998px) {
-  #employee {
-    grid-template-columns: repeat(3, 1fr);
-  }
+#search {
+  width: 75%;
+  border-radius: 4px;
+  padding: 0.5em;
+  margin-bottom: 1em;
 }
 
 .navigation {
@@ -51,6 +40,23 @@ h3 {
   .navigation #search {
     margin-top: 1em;
     width: 100%;
+  }
+}
+
+#employee {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  #employee {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1em;
+  }
+}
+@media (min-width: 998px) {
+  #employee {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -92,11 +98,6 @@ h3 {
   flex-shrink: 0;
 }
 
-.moreInfo {
-  text-align: center;
-  font-weight: lighter;
-}
-
 .email,
 .city,
 .names,
@@ -104,6 +105,11 @@ h3 {
 .address,
 .dob {
   margin: 0;
+}
+
+.moreInfo {
+  text-align: center;
+  font-weight: lighter;
 }
 
 .city {
@@ -116,16 +122,6 @@ h3 {
 
 .cellphone {
   margin-top: 1em;
-}
-
-.modal-contact-info {
-  border-bottom: 1px solid lightgrey;
-  text-align: center;
-  margin-bottom: 0.5em;
-  margin-left: 0;
-}
-.modal-contact-info .city {
-  margin-bottom: 1em;
 }
 
 .contact-info,
@@ -145,10 +141,13 @@ h3 {
   font-weight: bold;
 }
 
-#search {
-  width: 75%;
-  border-radius: 4px;
-  padding: 0.5em;
+.modal-contact-info {
+  border-bottom: 1px solid lightgrey;
+  text-align: center;
+  margin-bottom: 0.5em;
+  margin-left: 0;
+}
+.modal-contact-info .city {
   margin-bottom: 1em;
 }
 
@@ -172,24 +171,31 @@ h3 {
   width: 70%;
   box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
 }
-.modalHTML::after {
-  content: "❯";
+.modalHTML .next {
   font-size: 55px;
   opacity: 0.2;
+  color: black;
   position: absolute;
   top: 50%;
   right: -10%;
+  cursor: pointer;
 }
-.modalHTML::before {
-  content: "❮";
+.modalHTML .next:hover {
+  color: #fff;
+  opacity: 1;
+}
+.modalHTML .previous {
   font-size: 55px;
   opacity: 0.2;
+  color: black;
   position: absolute;
   top: 50%;
   left: -10%;
+  cursor: pointer;
 }
-.modalHTML::before:hover {
-  color: white;
+.modalHTML .previous:hover {
+  color: #fff;
+  opacity: 1;
 }
 @media (min-width: 768px) {
   .modalHTML {
@@ -197,10 +203,22 @@ h3 {
   }
 }
 
+.modal-content {
+  position: relative;
+}
+
 .closeBtn {
   color: #ccc;
-  float: right;
   font-size: 30px;
+  position: absolute;
+  top: 0;
+  right: 18%;
+  z-index: 10;
+}
+@media (min-width: 768px) {
+  .closeBtn {
+    right: 32%;
+  }
 }
 .closeBtn:hover, .closeBtn:focus {
   color: #000;
