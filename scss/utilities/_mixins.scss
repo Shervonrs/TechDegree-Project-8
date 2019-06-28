@@ -1,0 +1,17 @@
+//Accepts multiple flexbox parameters
+@mixin flexbox(
+$disp:flex,
+$dir:null,
+$flex:null,
+$wrap:null,
+$just:null,
+$align-items:null,
+$align-self: null) {
+  display: $disp;
+  flex-direction: $dir;
+  justify-content: $just;
+  flex: $flex;
+  flex-wrap: $wrap;
+  align-self: $align-self;
+  align-items: $align-items;
+}
