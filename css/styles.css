@@ -13,6 +13,7 @@ a {
 
 body {
   background-color: #edeff0;
+  padding: 1em;
 }
 
 h3 {
@@ -177,7 +178,6 @@ h3 {
 }
 .modalHTML .next {
   font-size: 55px;
-  opacity: 0.2;
   color: black;
   position: absolute;
   top: 50%;
@@ -190,7 +190,6 @@ h3 {
 }
 .modalHTML .previous {
   font-size: 55px;
-  opacity: 0.2;
   color: black;
   position: absolute;
   top: 50%;
